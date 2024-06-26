@@ -1,0 +1,95 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Welcome</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink='/admin/dashboard' class="nav-link text-white">
+              
+              Home
+            </a>
+          </li>
+          
+          <li>
+            <a routerLink='/admin/manage' class="nav-link text-white">
+              
+              Manage Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/listall' class="nav-link text-white">
+              
+              View Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/addemployee' class="nav-link active" aria-current="page">
+              
+              Add Employees
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+        <div>
+          <button (click)="logout()" class="nav-link text-white">
+            <img src="https://www.freeiconspng.com/thumbs/power-button-icon/power-button-icon-31.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Logout</strong>
+          </button>
+        </div>
+    </div>
+    <div  class="main-content">
+        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)" class="form-container">
+            <div class="form-group">
+              <label for="firstname">First Name</label>
+              <input id="firstname" name="firstname" [(ngModel)]="employee.firstname" required class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="lastname">Last Name</label>
+              <input id="lastname" name="lastname" [(ngModel)]="employee.lastname" required class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" name="email" [(ngModel)]="employee.email" required email class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" [(ngModel)]="employee.phone" required pattern="^[0-9]*$" class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="position">Position</label>
+              <input id="position" name="position" [(ngModel)]="employee.position" required class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="dob">Date of Birth</label>
+              <input id="dob" name="dob" [(ngModel)]="employee.dob" required type="date" class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="dept">Department</label>
+              <input id="dept" name="dept" [(ngModel)]="employee.dept" required class="form-control" />
+            </div>
+            
+            <div class="form-group">
+              <label for="joining">Joining Date</label>
+              <input id="joining" name="joining" [(ngModel)]="employee.joining" required type="date" class="form-control" />
+            </div>
+            
+            <div style="grid-column: span 2;">
+              <button type="submit" class="btn btn-primary">Add Employee</button>
+            </div>
+          </form>
+          
+    </div>
+</main>

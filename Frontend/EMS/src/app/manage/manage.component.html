@@ -1,0 +1,170 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Welcome</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink='/admin/dashboard' class="nav-link text-white">
+              
+              Home
+            </a>
+          </li>
+          
+          <li>
+            <a routerLink='/admin/manage' class="nav-link active" aria-current="page">
+              
+              Manage Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/listall' class="nav-link text-white">
+              
+              View Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/addemployee' class="nav-link text-white">
+              
+              Add Employees
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+        <div>
+          <button (click)="logout()" class="nav-link text-white">
+            <img src="https://www.freeiconspng.com/thumbs/power-button-icon/power-button-icon-31.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Logout</strong>
+          </button>
+        </div>
+      </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                    <th (click)="sortEmployees('eid')" (click)="toggleSortDirection()" ><span >EmpId </span><span *ngIf="sortKey === 'eid'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                    <th (click)="sortEmployees('firstname')" (click)="toggleSortDirection()"><span>Name</span><span *ngIf="sortKey === 'firstname'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>  
+                                    <th (click)="sortEmployees('dept')" (click)="toggleSortDirection()"><span>Department</span><span *ngIf="sortKey === 'dept'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>                                
+                                    <th (click)="sortEmployees('joining')" (click)="toggleSortDirection()"><span>Created</span><span *ngIf="sortKey === 'joining'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                    <th><span>Email</span></th>
+                                    <th><span>Phone</span></th>            
+                                    <th><span>Actions</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let employee of employees">
+                                  <td>
+                                    {{employee?.eid}}                                        
+                                  </td>
+                                  <td>
+                                    {{employee?.firstname}} {{employee?.lastname}}<br>
+                                    <span class="user-subhead">{{employee?.position}}</span>
+                                  </td>
+                                  <td>
+                                    {{employee?.dept}}                                        
+                                  </td>
+                                  <td>
+                                    {{employee?.joining}}                                        
+                                  </td>
+                                  <td>
+                                    <a href="#">{{employee?.email}}</a>
+                                  </td>
+                                  <td >
+                                    {{employee?.phone}}
+                                  </td>     
+                                    
+                                    <td style="width: 20%;">
+                                      <a (click)="openEditModal(employee)" class="table-link">
+                                        
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        
+                                          </a>
+                                        
+                                        <a (click)="openDeleteModal(employee)" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                            </span>
+                                        </a>
+                                      
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+      <!-- Edit Employee Modal -->
+<div id="editEmployeeModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal('editEmployeeModal')" style="float: right;">&times;</span>
+    <h2>Edit Employee</h2>
+    <form #editForm="ngForm" (ngSubmit)="onEditSubmit(editForm)">
+      <input type="hidden" name="eid" [(ngModel)]="selectedEmployee.eid">
+      <div>
+        <label>First Name</label>
+        <input type="text" name="firstname" [(ngModel)]="selectedEmployee.firstname" required>
+      </div>
+      <div>
+        <label>Last Name</label>
+        <input type="text" name="lastname" [(ngModel)]="selectedEmployee.lastname" required>
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" [(ngModel)]="selectedEmployee.email" required>
+      </div>
+      <div>
+        <label>Phone</label>
+        <input type="text" name="phone" [(ngModel)]="selectedEmployee.phone" required>
+      </div>
+      <div>
+        <label>Position</label>
+        <input type="text" name="position" [(ngModel)]="selectedEmployee.position" required>
+      </div>
+      <div>
+        <label>Date of Birth</label>
+        <input type="date" name="dob" [(ngModel)]="selectedEmployee.dob" required>
+      </div>
+      <div>
+        <label>Department</label>
+        <input type="text" name="dept" [(ngModel)]="selectedEmployee.dept" required>
+      </div>
+      <div>
+        <label>Joining Date</label>
+        <input type="date" name="joining" [(ngModel)]="selectedEmployee.joining" required>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Delete Employee Modal -->
+<div id="deleteEmployeeModal" class="modal">
+  <div class="modal-content delete-modal">
+    <span class="close" (click)="closeModal('deleteEmployeeModal')">&times;</span>
+    <h2>Delete Employee</h2>
+    <p>Are you sure you want to delete {{selectedEmployee.firstname}} {{selectedEmployee.lastname}}?</p>
+    <button class="delete" (click)="confirmDelete()">Delete</button>
+    <button class="cancel" (click)="closeModal('deleteEmployeeModal')">Cancel</button>
+  </div>
+</div>
+      </main>

@@ -1,0 +1,93 @@
+
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Welcome</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink='/admin/dashboard' class="nav-link active" aria-current="page">
+              
+              Home
+            </a>
+          </li>
+          
+          <li>
+            <a routerLink='/admin/manage' class="nav-link text-white">
+              
+              Manage Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/listall' class="nav-link text-white">
+              
+              View Employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/admin/addemployee' class="nav-link text-white">
+              
+              Add Employees
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+        <div>
+          <button (click)="logout()" class="nav-link text-white">
+            <img src="https://www.freeiconspng.com/thumbs/power-button-icon/power-button-icon-31.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Logout</strong>
+          </button>
+        </div>
+      </div>
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-blue order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">Total Personnel</h3>
+                          <h1 class="text-right"><span>{{ overview.total_emp }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-green order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Employees</h3>
+                          <h1 class="text-right"><span>{{ overview.emp_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">   
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-yellow order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Admins</h3>
+                          <h1 class="text-right"><span>{{ overview.adm_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-pink order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Departments</h3>
+                          <h1 class="text-right"><span>{{ overview.dept_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+        </div>
+      
+    </div>   
+    </main>

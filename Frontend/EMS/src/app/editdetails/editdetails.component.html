@@ -1,0 +1,90 @@
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Welcome</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink='/employee/empdashboard' class="nav-link text-white">
+              
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/employee/emplist' class="nav-link text-white">
+              
+              View employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/employee/editemployee' class="nav-link active" aria-current="page">
+              
+              Edit Details
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+        <div>
+          <button (click)="logout()" class="nav-link text-white">
+            <img src="https://www.freeiconspng.com/thumbs/power-button-icon/power-button-icon-31.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Logout</strong>
+          </button>
+        </div>
+      </div>
+   
+
+
+    <div  class="main-content">
+    <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)" class="form-container">
+        <input type="hidden" name="eid" [(ngModel)]="selectedEmployee.eid">
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input id="firstname" name="firstname" [(ngModel)]="selectedEmployee.firstname" required class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input id="lastname" name="lastname" [(ngModel)]="selectedEmployee.lastname" required class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" name="email" [(ngModel)]="selectedEmployee.email" required email class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" [(ngModel)]="selectedEmployee.phone" required pattern="^[0-9]*$" class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="position">Position</label>
+          <input id="position" name="position" [(ngModel)]="selectedEmployee.position" required class="form-control" readonly style="background-color: #e9ecef;"/>
+        </div>
+        
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input id="dob" name="dob" [(ngModel)]="selectedEmployee.dob" required type="date" class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="dept">Department</label>
+          <input id="dept" name="dept" [(ngModel)]="selectedEmployee.dept" required class="form-control" />
+        </div>
+        
+        <div class="form-group">
+          <label for="joining">Joining Date</label>
+          <input id="joining" name="joining" [(ngModel)]="selectedEmployee.joining" required type="date" class="form-control" />
+        </div>
+        
+        <div style="grid-column: span 2;">
+          <button type="submit" class="btn btn-primary">Update Employee</button>
+        </div>
+      </form>     
+    </div>
+ </main>

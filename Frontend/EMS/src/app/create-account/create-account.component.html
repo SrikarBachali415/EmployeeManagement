@@ -1,0 +1,23 @@
+<div class="login-container">
+    <h2>Create Account</h2>
+    <form (ngSubmit)="registerUser()">
+      <div>
+        <label for="EmpID">Employee ID:</label>
+        <input type="text" id="EmpID" [(ngModel)]="eid" name="EmpID" required >
+      </div>
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required >
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required >
+      </div>
+      <div>
+        <label for="cpassword">Confirm Password:</label>
+        <input type="password" id="cpassword" [(ngModel)]="cpassword" name="cpassword" required >
+      </div>
+      <button type="submit">Submit</button>
+      
+    </form>
+  </div>

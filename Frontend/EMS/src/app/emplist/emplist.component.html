@@ -1,0 +1,89 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<main class="d-flex flex-nowrap">
+    <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+          <span class="fs-4">Welcome</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a routerLink='/employee/empdashboard' class="nav-link text-white">
+              
+              Home
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/employee/emplist' class="nav-link active" aria-current="page">
+              
+              View employees
+            </a>
+          </li>
+
+          <li>
+            <a routerLink='/employee/editemployee' class="nav-link text-white">
+              
+              Edit Details
+            </a>
+          </li>
+
+        </ul>
+        <hr>
+        <div>
+          <button (click)="logout()" class="nav-link text-white">
+            <img src="https://www.freeiconspng.com/thumbs/power-button-icon/power-button-icon-31.png" alt="" width="32" height="32" class="rounded-circle me-2">
+            <strong>Logout</strong>
+          </button>
+        </div>
+      </div>
+    
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                              <tr>
+                                <th (click)="sortEmployees('eid')" (click)="toggleSortDirection()" ><span >EmpId </span><span *ngIf="sortKey === 'eid'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                <th (click)="sortEmployees('firstname')" (click)="toggleSortDirection()"><span>Name</span><span *ngIf="sortKey === 'firstname'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>  
+                                <th (click)="sortEmployees('dept')" (click)="toggleSortDirection()"><span>Department</span><span *ngIf="sortKey === 'dept'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>                                
+                                <th (click)="sortEmployees('joining')" (click)="toggleSortDirection()"><span>Created</span><span *ngIf="sortKey === 'joining'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                <th><span>Email</span></th>
+                                <th><span>Phone</span></th>            
+                                
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let employee of employees">
+                                  <td>
+                                    {{employee?.eid}}                                        
+                                  </td>  
+                                    <td>
+                                        {{employee?.firstname}} {{employee?.lastname}}<br>
+                                        <span class="user-subhead">{{employee?.position}}</span>
+                                    </td>
+                                    <td>
+                                      {{employee?.dept}}                                        
+                                    </td>
+                                    <td>
+                                      {{employee?.joining}}                                        
+                                    </td>
+                                    <td>
+                                        <a href="#">{{employee?.email}}</a>
+                                    </td>
+                                    <td >
+                                      {{employee?.phone}}
+                                    </td>                        
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div></main>
