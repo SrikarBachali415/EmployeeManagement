@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from './homepage/homepage.component';
 import { EmploginComponent } from './emplogin/emplogin.component';
@@ -27,7 +26,6 @@ import { EditdetailsComponent } from './editdetails/editdetails.component';
     AppComponent,
     LoginPageComponent,
     CreateAccountComponent,
-    ForgotPasswordComponent,
     HomepageComponent,
     EmploginComponent,
     AdminDashboardComponent,
