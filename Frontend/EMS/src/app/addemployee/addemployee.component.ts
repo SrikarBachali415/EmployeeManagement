@@ -33,7 +33,7 @@ export class AddemployeeComponent {
       );
       console.log('Employee added successfully:', newEmployee);
     } else {
-      console.log('Form is invalid');
+      alert('Form is invalid');
     }
 }
 }

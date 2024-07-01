@@ -37,4 +37,50 @@
           </button>
         </div>
       </div>
-    </main>
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-blue order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">Total Personnel</h3>
+                          <h1 class="text-right"><span>{{ overview.total_emp }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-green order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Employees</h3>
+                          <h1 class="text-right"><span>{{ overview.emp_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">   
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-yellow order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Admins</h3>
+                          <h1 class="text-right"><span>{{ overview.adm_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+              
+              <div class="col-md-4 col-xl-3">
+                  <div class="card bg-c-pink order-card">
+                      <div class="card-block">
+                          <h3 class="m-b-20">No of Departments</h3>
+                          <h1 class="text-right"><span>{{ overview.dept_no }}</span></h1>
+                          
+                      </div>
+                  </div>
+              </div>
+        </div>
+        </div>
+      </main>
+
