@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+
 import { HomepageComponent } from './homepage/homepage.component';
 import { EmploginComponent } from './emplogin/emplogin.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
@@ -18,7 +18,6 @@ import { EditdetailsComponent } from './editdetails/editdetails.component';
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginPageComponent ,canActivate: [AuthGuard]},
-  { path: 'forgotpassword', component: ForgotPasswordComponent },
   { path: 'create', component: CreateAccountComponent },
   { path: 'home', component: HomepageComponent, canActivate: [AuthGuard] },
   { path: 'emplogin', component: EmploginComponent,canActivate: [AuthGuard] },
