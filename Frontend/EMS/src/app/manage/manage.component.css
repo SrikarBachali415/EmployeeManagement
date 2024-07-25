@@ -449,7 +449,18 @@ color: #a75d54;
   border-radius: 5px;
   
 }
-
+select.form-control {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
 .modal-content.delete-modal .cancel:hover {
   background-color: #bbb;
+}
+.invalid-feedback {
+  color: #dc3545;
+  display: block;
+}
+.has-error .form-control {
+  border-color: #dc3545;
 }

@@ -45,51 +45,136 @@
         </div>
     </div>
     <div  class="main-content">
-        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)" class="form-container">
-            <div class="form-group">
-              <label for="firstname">First Name</label>
-              <input id="firstname" name="firstname" [(ngModel)]="employee.firstname" required class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="lastname">Last Name</label>
-              <input id="lastname" name="lastname" [(ngModel)]="employee.lastname" required class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" name="email" [(ngModel)]="employee.email" required email class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" [(ngModel)]="employee.phone" required pattern="^[0-9]*$" class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="position">Position</label>
-              <input id="position" name="position" [(ngModel)]="employee.position" required class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="dob">Date of Birth</label>
-              <input id="dob" name="dob" [(ngModel)]="employee.dob" required type="date" class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="dept">Department</label>
-              <input id="dept" name="dept" [(ngModel)]="employee.dept" required class="form-control" />
-            </div>
-            
-            <div class="form-group">
-              <label for="joining">Joining Date</label>
-              <input id="joining" name="joining" [(ngModel)]="employee.joining" required type="date" class="form-control" />
-            </div>
-            
-            <div style="grid-column: span 2;">
-              <button type="submit" class="btn btn-primary">Add Employee</button>
-            </div>
-          </form>
-          
+      <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)" class="form-container">
+        <div class="form-group" [ngClass]="{'has-error': firstname.invalid && (firstname.dirty || firstname.touched)}">
+          <label for="firstname">First Name</label>
+          <input
+            id="firstname"
+            name="firstname"
+            [(ngModel)]="employee.firstname"
+            required
+            class="form-control"
+            #firstname="ngModel"
+          />
+          <div *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)" class="invalid-feedback">
+            <div *ngIf="firstname.errors?.['required']">First Name is required.</div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': lastname.invalid && (lastname.dirty || lastname.touched)}">
+          <label for="lastname">Last Name</label>
+          <input
+            id="lastname"
+            name="lastname"
+            [(ngModel)]="employee.lastname"
+            required
+            class="form-control"
+            #lastname="ngModel"
+          />
+          <div *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)" class="invalid-feedback">
+            <div *ngIf="lastname.errors?.['required']">Last Name is required.</div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': email.invalid && (email.dirty || email.touched)}">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            name="email"
+            [(ngModel)]="employee.email"
+            required
+            email
+            class="form-control"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="invalid-feedback">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Email must be a valid email address.</div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': phone.invalid && (phone.dirty || phone.touched)}">
+          <label for="phone">Phone</label>
+          <input
+            id="phone"
+            name="phone"
+            [(ngModel)]="employee.phone"
+            required
+            pattern="^[0-9]*$"
+            class="form-control"
+            #phone="ngModel"
+          />
+          <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="invalid-feedback">
+            <div *ngIf="phone.errors?.['required']">Phone is required.</div>
+            <div *ngIf="phone.errors?.['pattern']">Phone must be a valid number.</div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': position.invalid && (position.dirty || position.touched)}">
+          <label for="position">Position</label>
+          <select id="position" name="position" [(ngModel)]="employee.position" required class="form-control" #position="ngModel">
+            <option value="" disabled selected>Select position</option>
+            <option value="admin">Admin</option>
+            <option value="employee">Employee</option>
+          </select>
+          <div *ngIf="position.invalid && (position.dirty || position.touched)" class="invalid-feedback">
+            Position is required.
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': validateDob() !== null && (dob.dirty || dob.touched)}">
+          <label for="dob">Date of Birth</label>
+          <input
+            id="dob"
+            name="dob"
+            [(ngModel)]="employee.dob"
+            required
+            type="date"
+            class="form-control"
+            #dob="ngModel"
+            (input)="validateDob()"
+          />
+          <div *ngIf="validateDob()?.invalidDOB && (dob.dirty || dob.touched)" class="invalid-feedback">
+            <div *ngIf="dob.errors?.['required']">Date of Birth is required.</div>
+            <div *ngIf="validateDob()?.invalidDOB">You must be at least 18 years old.</div>
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': dept.invalid && (dept.dirty || dept.touched)}">
+          <label for="dept">Department</label>
+          <select id="dept" name="dept" [(ngModel)]="employee.dept" required class="form-control" #dept="ngModel">
+            <option value="" disabled selected>Select department</option>
+            <option value="Human Resources">Human Resources</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Finance">Finance</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Operations">Operations</option>
+          </select>
+          <div *ngIf="dept.invalid && (dept.dirty || dept.touched)" class="invalid-feedback">
+            Department is required.
+          </div>
+        </div>
+      
+        <div class="form-group" [ngClass]="{'has-error': joining.invalid && (joining.dirty || joining.touched)}">
+          <label for="joining">Joining Date</label>
+          <input
+            id="joining"
+            name="joining"
+            [(ngModel)]="employee.joining"
+            required
+            type="date"
+            class="form-control"
+            #joining="ngModel"
+          />
+          <div *ngIf="joining.invalid && (joining.dirty || joining.touched)" class="invalid-feedback">
+            <div *ngIf="joining.errors?.['required']">Joining Date is required.</div>
+          </div>
+        </div>
+      
+        <div style="grid-column: span 2;">
+          <button type="submit" class="btn btn-primary">Add Employee</button>
+        </div>
+      </form>
+      
     </div>
 </main>

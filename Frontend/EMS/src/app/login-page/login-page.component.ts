@@ -25,9 +25,10 @@ export class LoginPageComponent {
             this.authService.logout();
           }
         },
-        error: (error) => {
-          alert("Wrong username or password");
-          console.error('Login failed', error);
+        error: (errorMessage) => {
+          
+          console.log("Wrong username or password");
+          console.error('Wrong username or password', errorMessage);
           
         }
       })

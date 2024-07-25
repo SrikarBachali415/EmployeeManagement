@@ -8,19 +8,45 @@ import { Router } from '@angular/router';
   styleUrl: './create-account.component.css'
 })
 export class CreateAccountComponent {
-  eid: number|null=null;
+  eid: number | null = null;
   username: string = '';
-  password: string= '';
-  cpassword: string= '';
+  password: string = '';
+  cpassword: string = '';
+  passwordError: boolean = false;
+  passwordsDoNotMatch: boolean = false;
+  hasUppercase: boolean = false;
+  hasLowercase: boolean = false;
+  hasNumber: boolean = false;
+  hasSpecialCharacter: boolean = false;
+
   constructor(private userService: UserService, private router: Router) {}
 
+  validatePassword() {
+    const password = this.password;
+    this.passwordError = password.length < 8 || !/[A-Z]/.test(password) || !/[a-z]/.test(password) || !/\d/.test(password) || !/[!@#$%^&*(),.?":{}|<>]/.test(password);
+    this.hasUppercase = /[A-Z]/.test(password);
+    this.hasLowercase = /[a-z]/.test(password);
+    this.hasNumber = /\d/.test(password);
+    this.hasSpecialCharacter = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    this.checkPasswordsMatch();
+  }
+
+  checkPasswordsMatch() {
+    this.passwordsDoNotMatch = this.password !== this.cpassword;
+  }
+
   registerUser() {
+    this.validatePassword();
     if (!this.username || !this.eid || !this.password) {
       alert('Please fill in all fields');
       return;
     }
-    if (this.cpassword !== this.password){
-      alert('Passwords dont match');
+    if (this.passwordError) {
+      alert('Password does not meet the required criteria.');
+      return;
+    }
+    if (this.passwordsDoNotMatch) {
+      alert('Passwords do not match');
       return;
     }
     this.userService.registerUser(this.eid, this.username, this.password).subscribe(
@@ -33,5 +59,11 @@ export class CreateAccountComponent {
         alert('Registration failed. Please try again.');
       }
     );
+  }
+
+  onCreateAccountSubmit(form: any) {
+    if (form.valid && !this.passwordError && !this.passwordsDoNotMatch) {
+      this.registerUser();
+    }
   }
 }

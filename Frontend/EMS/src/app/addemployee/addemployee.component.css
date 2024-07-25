@@ -172,11 +172,23 @@ body {
     padding: 10px;
     box-sizing: border-box;
   }
-  
+  select.form-control {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
   button.btn {
     display: block;
     margin-top: 20px;
     margin-left:42% ;
     padding: 10px 20px;
   }
+
+  .has-error .form-control {
+    border-color: #dc3545;
+  }
   
+  .invalid-feedback {
+    color: #dc3545;
+    display: block;
+  }

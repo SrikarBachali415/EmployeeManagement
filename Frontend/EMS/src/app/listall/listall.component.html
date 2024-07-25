@@ -55,9 +55,10 @@
                             <thead>
                               <tr>
                                 <th (click)="sortEmployees('eid')" (click)="toggleSortDirection()" ><span >EmpId </span><span *ngIf="sortKey === 'eid'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
-                                <th (click)="sortEmployees('firstname')" (click)="toggleSortDirection()"><span>Name</span><span *ngIf="sortKey === 'firstname'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>  
+                                <th (click)="sortEmployees('firstname')" (click)="toggleSortDirection()"><span>Name</span><span *ngIf="sortKey === 'firstname'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                <th (click)="sortEmployees('dob')" (click)="toggleSortDirection()"><span>Date Of Birth</span><span *ngIf="sortKey === 'dob'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>  
                                 <th (click)="sortEmployees('dept')" (click)="toggleSortDirection()"><span>Department</span><span *ngIf="sortKey === 'dept'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>                                
-                                <th (click)="sortEmployees('joining')" (click)="toggleSortDirection()"><span>Created</span><span *ngIf="sortKey === 'joining'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
+                                <th (click)="sortEmployees('joining')" (click)="toggleSortDirection()"><span>JoinDate</span><span *ngIf="sortKey === 'joining'">{{ sortDirection === 'asc' ? '▴' : '▾' }}</span></th>
                                 <th><span>Email</span></th>
                                 <th><span>Phone</span></th>            
                                 
@@ -73,13 +74,16 @@
                                         <span class="user-subhead">{{employee?.position}}</span>
                                     </td>
                                     <td>
+                                      {{employee?.dob}}                                        
+                                    </td>
+                                    <td>
                                       {{employee?.dept}}                                        
                                     </td>
                                     <td>
                                       {{employee?.joining}}                                        
                                     </td>
                                     <td>
-                                        <a href="#">{{employee?.email}}</a>
+                                        <a href="mailto:{{employee?.email}}">{{employee?.email}}</a>
                                     </td>
                                     <td >
                                       {{employee?.phone}}

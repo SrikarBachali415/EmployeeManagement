@@ -45,3 +45,38 @@
     background-color: #0056b3;
   }
   
+  /* validation */
+  .form-group.has-error input {
+    border-color: red;
+  }
+  
+  .form-group.has-error .invalid-feedback {
+    color: red;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .has-error .form-control:focus {
+    border-color: red;
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+  }
+  
+  .invalid-feedback {
+    display: block;
+    margin-top: 0.25rem;
+  }
+  

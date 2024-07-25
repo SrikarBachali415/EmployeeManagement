@@ -21,7 +21,22 @@ export class ManageComponent{
       this.loadEmployees();
       
   }
+  validateDob() {
+    const dob = new Date(this.selectedEmployee.dob);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
 
+    if (age < 18) {
+      return { 'invalidDOB': true };
+    }
+
+    return null;
+  }
   
   logout() {
     this.authService.logout();
@@ -56,7 +71,12 @@ export class ManageComponent{
         this.loadEmployees();
         this.closeModal('editEmployeeModal');
       });
-    }
+    }else {
+    Object.keys(form.controls).forEach(field => {
+      const control = form.control.get(field);
+      control?.markAsTouched({ onlySelf: true });
+    });
+  }
   }
 
   confirmDelete(): void {

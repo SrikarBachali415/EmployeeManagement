@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../employee';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-addemployee',
@@ -17,7 +17,22 @@ export class AddemployeeComponent {
   logout() {
     this.authService.logout();
   }
-  
+  validateDob() {
+    const dob = new Date(this.employee.dob);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+
+    if (age < 18) {
+      return { 'invalidDOB': true };
+    }
+
+    return null;
+  }
 
   onSubmit(form: NgForm): void {
     if (form.valid) {
@@ -33,7 +48,10 @@ export class AddemployeeComponent {
       );
       console.log('Employee added successfully:', newEmployee);
     } else {
-      alert('Form is invalid');
+      Object.keys(form.controls).forEach(field => {
+        const control = form.control.get(field);
+        control?.markAsTouched({ onlySelf: true });
+      });
     }
 }
 }
