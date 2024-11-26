@@ -26,9 +26,9 @@ export class LoginPageComponent {
           }
         },
         error: (errorMessage) => {
-          
+          alert("Wrong username or password");
           console.log("Wrong username or password");
-          console.error('Wrong username or password', errorMessage);
+          console.error('Wrong username or password', this.errorMessage);
           
         }
       })

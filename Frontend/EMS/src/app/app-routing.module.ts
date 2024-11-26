@@ -14,6 +14,7 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { EmplistComponent } from './emplist/emplist.component';
 import { EditdetailsComponent } from './editdetails/editdetails.component';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,8 +28,8 @@ const routes: Routes = [
   { path: 'admin/addemployee', component: AddemployeeComponent,canActivate: [AuthGuard]   },
   { path: 'employee/empdashboard', component: EmployeeDashboardComponent,canActivate: [AuthGuard]   },
   { path: 'employee/emplist', component: EmplistComponent,canActivate: [AuthGuard]   },
-  { path: 'employee/editemployee', component: EditdetailsComponent,canActivate: [AuthGuard]   }
-
+  { path: 'employee/editemployee', component: EditdetailsComponent,canActivate: [AuthGuard]   },
+  { path: 'test', component: TestcomponentComponent}
 
 ];
 

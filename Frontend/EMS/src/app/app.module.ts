@@ -19,6 +19,7 @@ import { AddemployeeComponent } from './addemployee/addemployee.component';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { EmplistComponent } from './emplist/emplist.component';
 import { EditdetailsComponent } from './editdetails/editdetails.component';
+import { TestcomponentComponent } from './testcomponent/testcomponent.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { EditdetailsComponent } from './editdetails/editdetails.component';
     AddemployeeComponent,
     EmployeeDashboardComponent,
     EmplistComponent,
-    EditdetailsComponent
+    EditdetailsComponent,
+    TestcomponentComponent
     
   ],
   imports: [
